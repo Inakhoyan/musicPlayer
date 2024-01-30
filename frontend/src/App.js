@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import MusicPlayer from './MusicPlayer';
 import { useState } from 'react';
@@ -12,8 +11,8 @@ function App() {
 		<div className="shape shape-3"></div>
 		<div className="shape shape-2"></div>
 	<main>
-		{/* <Card props={{musicNumber, setMusicNumber}}/> */}
-    <MusicPlayer setMusicNumber={setMusicNumber} />
+
+	    <MusicPlayer setMusicNumber={setMusicNumber} />
 	</main>
 
 	</div>

@@ -1,4 +1,3 @@
-// AudioPlayer.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { PiArrowFatRightThin } from "react-icons/pi";
@@ -47,18 +46,14 @@ const AudioProgressBar = styled.input`
   }
 `;
 
-const AudioPlayer = ({ src, musicList, musicNumber, setMusicNumber }) => {
+const AudioPlayer = ({ src, musicList }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioSrc, setAudioSrc] = useState(0);
-
-  
-
   const [musicNum,setMusicNum] = useState(0);
-// console.log(musicList);
-//   const [musicsNumber, setMusicNumber] = useState(0);
+
 
 useEffect(() => {
     // Reset playback when musicNum changes
@@ -99,8 +94,8 @@ useEffect(() => {
   useEffect(() => {
 	const audio = audioRef.current;
   
+	// Check if it's safe to play (audio is loaded)
 	const handleCanPlay = () => {
-	  // Check if it's safe to play (audio is loaded)
 	  audio.play();
 	  if (!audio.paused && !isPlaying) {
 		audio.play();
@@ -131,9 +126,6 @@ useEffect(() => {
       .catch(error => console.error('Error fetching music file:', error));
   };
 
-
-
-
   const handlePlayPause = () => {
     const audio = audioRef.current;
 
@@ -157,28 +149,18 @@ useEffect(() => {
 const handleNext = () => {
 	const nextIndex = (musicNum + 1) % musicList.length;
 	setMusicNum(nextIndex);
-	// playMusic(nextIndex);
+	playMusic(nextIndex);
   };
   
   const handlePrev = () => {
 	const prevIndex = (musicNum - 1 + musicList.length) % musicList.length;
 	setMusicNum(prevIndex);
-	// playMusic(prevIndex);
+	playMusic(prevIndex);
   };
 
-
-
-//   const playMusic = (index) => {
-//     // Fetch the music file from the backend
-// 	console.log(index);
-//     axios.get(`http://localhost:5000/api/music/${index}`, { responseType: 'arraybuffer' })
-//       .then(response => {
-//         const blob = new Blob([response.data], { type: 'audio/mpeg' });
-//         const url = URL.createObjectURL(blob);
-//         setAudioSrc(url);
-//       })
-//       .catch(error => console.error('Error fetching music file:', error));
-//   };
+  useEffect(() => {
+	setAudioSrc(src);
+  }, [src]);
   
 
   return (

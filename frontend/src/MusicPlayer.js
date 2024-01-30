@@ -1,5 +1,5 @@
 // src/components/MusicPlayer.js
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./MusicPlayer.css";
 import AudioPlayer from './components/AudioPlayer';
@@ -9,9 +9,6 @@ const MusicPlayer = ({ musicNumber, setMusicNumber }) => {
   const [audioSrc, setAudioSrc] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [toggle, setToggle] = useState(true);
-
-  const [isPlaying, setIsPlaying] = useState(false);
-
 
 
 useEffect(() => {
@@ -24,8 +21,6 @@ async function getMusic() {
 	.then(response => {
 	  setMusicList(response.data);
 	  setSelectedFile(response.data)
-	  // musicList = response.data
-	//   playMusic(0);
 	})
 	.catch(error => console.error('Error fetching music metadata:', error));
 }
@@ -66,7 +61,6 @@ async function getMusic() {
       .then(response => {
         console.log(response.data);
 		getMusic();
-        // You can update the music list or perform other actions after successful upload
       })
       .catch(error => console.error('Error uploading music file:', error));
 
@@ -74,7 +68,6 @@ async function getMusic() {
 
   return (
     <div className='container-file'>
-      {/* <h1>Music Player</h1> */}
       <ul>
         {musicList.map((song, index) => (
           <li key={index} onClick={() => playMusic(index)}>
