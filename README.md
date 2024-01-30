@@ -35,8 +35,8 @@ This project is a simple music player app built with React on the frontend and E
 - npm (Node Package Manager)
 
 ### Installation
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
-2. Navigate to the project folder: `cd your-repo`
+1. Clone the repository: `git clone https://github.com/Inakhoyan/musicPlayer/pull/1`
+2. Navigate to the project folder: `cd musicPlayer`
 3. Install dependencies:
    - Frontend: `cd client && npm install`
    - Backend: `cd server && npm install`
